@@ -14,7 +14,7 @@ jobs:
         id: check
         run: echo "::set-output name=cancel_job::true"
       - name: cancelling
-        if: check.cancel_job
+        if: steps.check.cancel_job
         uses: andymckay/cancel-action@0.2
           
   a:
