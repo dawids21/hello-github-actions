@@ -10,3 +10,26 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
+      - name: check modified files
+        id: check
+        run: echo "::set-output name=cancel_job::true"
+      - name: cancelling
+        if: steps.check.outputs.cancel_job == 'true'
+        uses: andymckay/cancel-action@0.2
+          
+  a:
+    name: a
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: a1
+        run: echo a1
+  b:
+    name: b
+    runs-on: ubuntu-latest
+    needs: a
+    steps:
+      - name: b
+        run: echo b
+    
+          
