@@ -10,8 +10,10 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
+      - name: check modified files
+        run: echo "::set-env name=cancel_job::true"
       - name: cancelling
-        if: 1 == 1
+        if: env.cancel_job
         uses: andymckay/cancel-action@0.2
           
   a:
