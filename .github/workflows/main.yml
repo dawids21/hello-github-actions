@@ -10,3 +10,21 @@ jobs:
       - uses: ./action-a
         with:
           MY_NAME: "Mona"
+          
+  a:
+    name: a
+    runs-on: ubuntu-latest
+    needs: build
+    if: 2 == 1
+    steps:
+      - name: a1
+        run: echo a1
+  b:
+    name: b
+    runs-on: ubuntu-latest
+    needs: a
+    steps:
+      - name: b
+        run: echo b
+    
+          
