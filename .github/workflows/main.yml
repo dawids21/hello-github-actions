@@ -12,7 +12,7 @@ jobs:
           MY_NAME: "Mona"
       - name: check modified files
         id: check
-        run: echo "::set-output name=cancel_job::true"
+        run: echo "::set-output name=cancel_job::false"
       - name: cancelling
         if: steps.check.outputs.cancel_job == 'true'
         uses: andymckay/cancel-action@0.2
